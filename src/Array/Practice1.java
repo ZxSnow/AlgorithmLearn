@@ -1,6 +1,6 @@
 package Array;
 
-public class PracticeOne {
+public class Practice1 {
     /**
      * 题目：从排序数组中删除重复项
      * <p>
