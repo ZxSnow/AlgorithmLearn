@@ -1,8 +1,5 @@
 package String;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Practice1 {
     /**
      * 题目：反转字符串
