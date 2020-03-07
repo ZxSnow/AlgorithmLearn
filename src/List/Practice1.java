@@ -37,7 +37,7 @@ public class Practice1 {
         System.out.print(node.val);
     }
 
-    public static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 
