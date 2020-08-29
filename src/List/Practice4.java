@@ -6,7 +6,9 @@ import java.util.List;
 
 public class Practice4 {
     /**
+     * 合并两个链表
      * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/6/linked-list/44/
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -29,10 +31,10 @@ public class Practice4 {
         }
 
         if (l1.val < l2.val) {
-            l1.next = mergeTwoLists(l1.next, l2);
+            l1.next = mergeTwoLists0(l1.next, l2);
             return l1;
         } else {
-            l2.next = mergeTwoLists(l1, l2.next);
+            l2.next = mergeTwoLists0(l1, l2.next);
             return l2;
         }
 
