@@ -7,7 +7,9 @@ public class Practice2 {
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
-//        root.left;
+        root.left = new TreeNode(1);
+        Practice2 p = new Practice2();
+        p.isValidBST(root);
     }
 
     public boolean isValidBST(TreeNode root) {
@@ -17,6 +19,12 @@ public class Practice2 {
     public boolean help(TreeNode root, TreeNode max, TreeNode min) {
         if (root == null) {
             return true;
+        }
+        if (max != null && root.val >= max.val) {
+            return false;
+        }
+        if (min != null && root.val <= min.val) {
+            return false;
         }
 
         return help(root.left, root, min) && help(root.right, max, root);

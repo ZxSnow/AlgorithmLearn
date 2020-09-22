@@ -19,7 +19,7 @@ public class Day1 {
     }
 
     public void preTravel(TreeNode node, List<Integer> list) {
-        if (node == null || node.val == null) {
+        if (node == null) {
             return;
         }
         list.add(node.val);
