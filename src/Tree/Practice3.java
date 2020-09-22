@@ -1,6 +1,13 @@
 package Tree;
 
 public class Practice3 {
+    /**
+     * 对称二叉树验证
+     * https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xn7ihv/
+     *
+     * @param root
+     * @return
+     */
 
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {
