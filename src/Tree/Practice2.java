@@ -11,20 +11,14 @@ public class Practice2 {
     }
 
     public boolean isValidBST(TreeNode root) {
+        return help(root, null, null);
+    }
 
+    public boolean help(TreeNode root, TreeNode max, TreeNode min) {
         if (root == null) {
             return true;
         }
-        if (root.left != null && root.val <= root.left.val) {
-            return false;
-        }
-        if (root.right != null && root.val >= root.right.val) {
-            return false;
-        }
 
-        if (!isValidBST(root.left) || !isValidBST(root.right)) {
-            return false;
-        }
-        return true;
+        return help(root.left, root, min) && help(root.right, max, root);
     }
 }
