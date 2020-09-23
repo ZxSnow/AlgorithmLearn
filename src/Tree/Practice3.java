@@ -29,4 +29,8 @@ public class Practice3 {
         return help(node1.left, node2.right) && help(node1.right, node2.left);
     }
 
+    public boolean isSymmetricV2(TreeNode node) {
+        return true;
+    }
+
 }
