@@ -23,6 +23,23 @@ public class Practice2 {
     public static void main(String[] args) {
 
     }
+
+    /**
+     * labuladong算法学到的，向后找了一个最小的买入时间，然后做差找出最大值
+     *
+     * @param prices
+     * @return
+     */
+    public int calculate0(int[] prices) {
+        int result = 0;
+        int minBug = prices[0];
+        for (int sell = 1; sell < prices.length; sell++) {
+            minBug = Math.min(minBug, prices[sell]);
+            result = Math.max(result, prices[sell] - minBug);
+        }
+        return result;
+    }
+
     /**
      * 暴力求解法
      *
