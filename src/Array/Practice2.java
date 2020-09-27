@@ -26,6 +26,7 @@ public class Practice2 {
 
     /**
      * labuladong算法学到的，向后找了一个最小的买入时间，然后做差找出最大值
+     * 只完成一次交易
      *
      * @param prices
      * @return
@@ -57,8 +58,7 @@ public class Practice2 {
                 if (prices[start] < prices[i]) {
                     //迭代计算
                     int profit = calculate(prices, i + 1) + prices[i] - prices[start];
-                    if (profit > maxProfit)
-                        maxProfit = profit;
+                    maxProfit = Math.max(profit, maxProfit);
                 }
             }
             if (maxProfit > max)
