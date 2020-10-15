@@ -1,4 +1,6 @@
-package Tree;
+package Tree.special;
+
+import Tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
