@@ -1,4 +1,4 @@
-package Array;
+package Array.primary;
 
 public class Practice2 {
     // TODO: 2019-10-17 太难了我自己想不出来
