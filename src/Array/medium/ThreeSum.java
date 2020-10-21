@@ -5,6 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ThreeSum {
+    /**
+     * https://leetcode-cn.com/leetbook/read/top-interview-questions-medium/xvpj16/
+     *
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
