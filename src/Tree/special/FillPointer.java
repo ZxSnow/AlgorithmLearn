@@ -1,7 +1,5 @@
 package Tree.special;
 
-import Tree.TreeNode;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,7 +31,7 @@ public class FillPointer {
         no.right.right = new Node(7);
 //        no.left.left.left = new Node(7);
 //        no.right.right.right = new Node(8);
-        fp.connectV3(no);
+        fp.connectV0(no);
     }
 
     /**
@@ -73,41 +71,80 @@ public class FillPointer {
     }
 
     /**
-     * 广度优先搜索（待完善） 超出限制
+     * 广度优先搜索
      *
      * @param root
      * @return
      */
     public Node connectV3(Node root) {
+        if (root == null) return null;
         Queue<Node> queue = new LinkedList<>();
         queue.add(root.left);
         queue.add(root.right);
-        while (queue.size() > 1) {
+        while (!queue.isEmpty()) {
             int size = queue.size();
-            for (int i = 0; i < size - 1; i++) {
-                Node before = queue.poll();
-                Node next = queue.peek();
-                before.next = next;
-                if (before.left != null) {
-                    queue.add(before.left);
+            Node pre = null;
+            for (int i = 0; i < size; i++) {
+                Node node = queue.poll();
+                if (node == null) continue;
+                if (pre != null) {
+                    pre.next = node;
                 }
-                if (before.right != null) {
-                    queue.add(before.right);
+                pre = node;
+                if (node.left != null) {
+                    queue.add(node.left);
                 }
-                if (next.left != null) {
-                    queue.add(next.left);
-                }
-                if (next.right != null) {
-                    queue.add(next.right);
-                }
-                if (i == size - 2) {
-                    queue.poll();
+                if (node.right != null) {
+                    queue.add(node.right);
                 }
             }
         }
         return root;
     }
 
+    /**
+     * 使用了两个链表同时推进两个层的节点，cur表示较高一层的节点列表，pre表示较低一层，
+     * pre前进的条件是cur有非空的子节点，推进的同时对接点进行相连，在一开始创建的dummy指向了pre这一行的最左侧
+     *
+     * @param root
+     * @return
+     */
+    public Node connectV0(Node root) {
+        if (root == null)
+            return root;
+        //cur我们可以把它看做是每一层的链表
+        Node cur = root;
+        while (cur != null) {
+            //遍历当前层的时候，为了方便操作在下一
+            //层前面添加一个哑结点（注意这里是访问
+            //当前层的节点，然后把下一层的节点串起来）
+            Node dummy = new Node(0);
+            //pre表示访下一层节点的前一个节点
+            Node pre = dummy;
+            //然后开始遍历当前层的链表
+            while (cur != null) {
+                if (cur.left != null) {
+                    //如果当前节点的左子节点不为空，就让pre节点
+                    //的next指向他，也就是把它串起来
+                    //此时dummy的next也变成了左节点
+                    pre.next = cur.left;
+                    //然后再更新pre
+                    pre = pre.next;
+                }
+                //同理参照左子树
+                if (cur.right != null) {
+                    pre.next = cur.right;
+                    pre = pre.next;
+                }
+                //继续访问这一行的下一个节点
+                cur = cur.next;
+            }
+            //把下一层串联成一个链表之后，让他赋值给cur，
+            //后续继续循环，直到cur为空为止
+            cur = dummy.next;
+        }
+        return root;
+    }
 }
 
 class Node {
