@@ -19,25 +19,25 @@ public class TreeNode {
     }
 
     /**
-     * 根据数组创建一棵树
+     * 序列化
+     * https://leetcode-cn.com/leetbook/read/data-structure-binary-tree/xomr73/
      *
-     * @param values
-     * @return 根节点
+     * @param root
+     * @return
      */
-    public static TreeNode build(Integer[] values, int idx) {
-        TreeNode root = null;
-        if (idx < values.length) {
-            root = new TreeNode(values[idx]);
-            root.left = build(values, 2 * idx + 1);
-            root.right = build(values, 2 * idx + 2);
-        }
-        return root;
+    public String serialize(TreeNode root) {
+
+        return null;
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+
+        return null;
     }
 
 
     public static void main(String[] args) {
         Integer[] test = {1, 2, 3, 4, 5};
-        TreeNode node = TreeNode.build(test, 0);
-        System.out.println(node);
     }
 }
