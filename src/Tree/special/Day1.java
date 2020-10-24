@@ -31,9 +31,5 @@ public class Day1 {
 
     public static void main(String[] args) {
         Day1 test = new Day1();
-        Integer[] arr = {1, null, 2, 3};
-        TreeNode node = TreeNode.build(arr, 0);
-        List<Integer> re = test.preorderTraversal(node);
-        System.out.println(re.toString());
     }
 }
