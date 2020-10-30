@@ -1,7 +1,6 @@
 package Array.medium;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class LongestSubstring {
     /**
@@ -34,8 +33,35 @@ public class LongestSubstring {
         return res;
     }
 
+    /**
+     * 滑动窗口方式
+     *
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring1(String s) {
+        int left = 0;
+        int right = 0;
+        int res = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        while (right < s.length()) {
+            char c = s.charAt(right);
+            right++;
+            if (map.containsKey(c)) {
+                res = Math.max(res, right - left - 1);
+                left = Math.max(map.get(c) + 1, left);
+                map.put(c, right - 1);
+            } else {
+                map.put(c, right - 1);
+            }
+        }
+
+        return Math.max(res, right - left);
+    }
+
     public static void main(String[] args) {
         LongestSubstring ls = new LongestSubstring();
-        ls.lengthOfLongestSubstring(" ");
+        int res = ls.lengthOfLongestSubstring1("abba");
+        System.out.println(res);
     }
 }

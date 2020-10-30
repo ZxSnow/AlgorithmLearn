@@ -1,4 +1,4 @@
-package List;
+package List.primary;
 
 import java.io.IOException;
 
