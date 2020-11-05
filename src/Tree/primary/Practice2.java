@@ -1,4 +1,6 @@
-package Tree;
+package Tree.primary;
+
+import Tree.TreeNode;
 
 public class Practice2 {
     /**

@@ -1,6 +1,6 @@
-package Tree;
+package Tree.primary;
 
-import java.util.TreeMap;
+import Tree.TreeNode;
 
 public class Practice5 {
 

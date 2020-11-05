@@ -1,4 +1,6 @@
-package Tree;
+package Tree.primary;
+
+import Tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
