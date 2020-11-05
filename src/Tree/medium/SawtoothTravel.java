@@ -51,6 +51,37 @@ public class SawtoothTravel {
         return res;
     }
 
+    /**
+     * 深度优先搜索，Leetcode上通过案例 0ms
+     * 思路：每下降一个深度，就创建一个新的list，受所处层影响，只有当前层的节点值才会被添加进来
+     * 如果当前层为奇数层，在val值添加的时候，添加到最前面（idx=0的位置），此时所有元素都在向后移动
+     * 如果是偶数层，就在列表结尾添加值
+     *
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> zigzagLevelOrder1(TreeNode root) {
+        List<List<Integer>> arr = new ArrayList<List<Integer>>();
+        zigzagPreOrder(arr, root, 0);
+        return arr;
+    }
+
+    public void zigzagPreOrder(List<List<Integer>> arr, TreeNode root, int level) {
+        if (root == null) return;
+        if (level >= arr.size()) {
+            arr.add(new ArrayList<Integer>());
+        }
+
+
+        if (level % 2 != 0) {
+            arr.get(level).add(0, root.val);
+        } else {
+            arr.get(level).add(root.val);
+        }
+        zigzagPreOrder(arr, root.left, level + 1);
+        zigzagPreOrder(arr, root.right, level + 1);
+    }
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(0);
         root.left = new TreeNode(2);
@@ -63,7 +94,7 @@ public class SawtoothTravel {
         root.right.left.right = new TreeNode(6);
         root.right.right.right = new TreeNode(8);
         SawtoothTravel st = new SawtoothTravel();
-        List<List<Integer>> res = st.zigzagLevelOrder(root);
+        List<List<Integer>> res = st.zigzagLevelOrder1(root);
         System.out.println(res);
     }
 }
