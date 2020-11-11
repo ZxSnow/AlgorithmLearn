@@ -1,4 +1,4 @@
-package Sort;
+package Sort.primary;
 
 public class Practice2 {
     /**
