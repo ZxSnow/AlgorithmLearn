@@ -1,4 +1,4 @@
-package DynamicProgram;
+package DynamicProgram.primary;
 
 public class Practice2 {
     /**

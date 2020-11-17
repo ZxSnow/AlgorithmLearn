@@ -1,6 +1,4 @@
-package DynamicProgram;
-
-import java.util.Arrays;
+package DynamicProgram.primary;
 
 public class Practice4 {
 
