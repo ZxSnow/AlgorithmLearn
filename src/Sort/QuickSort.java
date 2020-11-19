@@ -29,7 +29,6 @@ public class QuickSort {
         sort(a, i + 1, hight); // 对高子表进行递归排序
 
     }
-
     public static void quickSort(int[] a) {
         sort(a, 0, a.length - 1);
     }
