@@ -15,7 +15,6 @@ public class HeapSort {
             // 交换之后，需要重新检查堆是否符合大顶堆，不符合则要调整
             heapAdjust(nums, 0, i);
         }
-
     }
 
     /**
