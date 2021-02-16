@@ -44,17 +44,35 @@ public class UniquePaths {
      * @return
      */
     public int uniquePaths1(int m, int n) {
-        int[][] dp = new int[n][m];
-        dp[n - 1][m - 1] = 1;
-        int row = n - 1;
-        int col = m - 1;
+        int[][] dp = new int[m + 1][n + 1];
+        // dp数组初始化
+        dp[m][n - 1] = 1;
 
+        //逐层遍历
+        int row = m - 1;
+        int col = n - 1;
+        while (row >= 0 && col >= 0) {
+            travel(dp, row, col);
+            row--;
+            col--;
+        }
         return dp[0][0];
+    }
+
+    public void travel(int[][] dp, int row, int col) {
+        //更新行
+        for (int i = col; i >= 0; i--) {
+            dp[row][i] = dp[row][i + 1] + dp[row + 1][i];
+        }
+        //更新列
+        for (int i = row; i >= 0; i--) {
+            dp[i][col] = dp[i][col + 1] + dp[i + 1][col];
+        }
     }
 
     public static void main(String[] args) {
         UniquePaths up = new UniquePaths();
-        int res = up.uniquePaths(36, 7);
+        int res = up.uniquePaths1(3, 3);
         System.out.println(res);
     }
 }
