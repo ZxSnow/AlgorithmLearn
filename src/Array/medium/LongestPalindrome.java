@@ -37,8 +37,32 @@ public class LongestPalindrome {
         return s.substring(maxStart, maxEnd + 1);
     }
 
+    public String longestPalindromeZx(String s) {
+        String res = "";
+        for (int i = 0; i < s.length(); i++) {
+            String res1 = help(s, i, i);
+            String res2 = help(s, i, i + 1);
+            res = res.length() > res1.length() ? res : res1;
+            res = res.length() > res2.length() ? res : res2;
+        }
+        return res;
+    }
+
+    public String help(String str, int l, int r) {
+        while (l >= 0 && r < str.length()) {
+            if (str.charAt(l) == str.charAt(r)) {
+                l--;
+                r++;
+            }else {
+                break;
+            }
+        }
+        return str.substring(l + 1, r);
+    }
+
     public static void main(String[] args) {
         LongestPalindrome lp = new LongestPalindrome();
-        lp.longestPalindrome("babad");
+        String res = lp.longestPalindromeZx("babad");
+        System.out.println(res);
     }
 }
