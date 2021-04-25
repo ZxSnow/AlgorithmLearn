@@ -47,10 +47,59 @@ public class ThreeSum {
         return res;
     }
 
+    public int threeSumClosest(int[] nums, int target) {
+        int dis = Integer.MAX_VALUE;
+        Arrays.sort(nums);
+        int result = 0;
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            //三数之和
+            int sum = help(nums, i + 1, target - nums[i]) + nums[i];
+
+            int tmp = target - sum;
+            if (dis > Math.abs(tmp)) {
+                dis = Math.abs(tmp);
+                result = sum;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 返回最接近target的两数之和
+     *
+     * @param nums
+     * @param start
+     * @param target
+     * @return
+     */
+    public int help(int[] nums, int start, int target) {
+        int res = Integer.MAX_VALUE;
+        int left = start;
+        int right = nums.length - 1;
+        int copy = Integer.MIN_VALUE;
+
+        while (left < right) {
+            int tmp = target - (nums[left] + nums[right]);
+            if (res > Math.abs(tmp)) {
+                copy = nums[left] + nums[right];
+                res = Math.abs(tmp);
+            }
+            if (tmp > 0) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return copy;
+    }
+
     public static void main(String[] args) {
-        int[] nums = {0, 0, 0, 0};
+        int[] nums = {-1,2,1,-4};
         ThreeSum ts = new ThreeSum();
-        List<List<Integer>> res = ts.threeSum(nums);
+//        List<List<Integer>> res = ts.threeSum(nums);
+//        System.out.println(res);
+        int res = ts.threeSumClosest(nums, 1);
         System.out.println(res);
     }
 }
