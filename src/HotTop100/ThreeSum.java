@@ -3,14 +3,14 @@ package HotTop100;
 import java.util.*;
 
 public class ThreeSum {
-    public List<List<Integer>> threeSum(int[] nums) {
+    public List<List<Integer>> threeSum(int[] nums, int start, int target) {
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
-        for (int i = 0; i < nums.length; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) {
+        for (int i = start; i < nums.length; i++) {
+            if (i > start && nums[i] == nums[i - 1]) {
                 continue;
             }
-            List<List<Integer>> list = twoSum(nums, i + 1, -nums[i]);
+            List<List<Integer>> list = twoSum(nums, i + 1, target - nums[i]);
             for (List<Integer> li : list) {
                 li.add(nums[i]);
             }
@@ -94,12 +94,33 @@ public class ThreeSum {
         return copy;
     }
 
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            List<List<Integer>> list = threeSum(nums, i + 1, target - nums[i]);
+            for (List<Integer> li : list) {
+                li.add(nums[i]);
+            }
+            if (list.size() > 0) {
+                res.addAll(list);
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
-        int[] nums = {-1,2,1,-4};
+//        int[] nums = {-1,2,1,-4};
         ThreeSum ts = new ThreeSum();
 //        List<List<Integer>> res = ts.threeSum(nums);
 //        System.out.println(res);
-        int res = ts.threeSumClosest(nums, 1);
+//        int res = ts.threeSumClosest(nums, 1);
+//        System.out.println(res);
+        int[] nums = {2, 2, 2, 2, 2};
+        List<List<Integer>> res = ts.fourSum(nums, 8);
         System.out.println(res);
     }
 }

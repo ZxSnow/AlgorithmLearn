@@ -11,12 +11,14 @@ public class LetterGroup {
      * https://leetcode-cn.com/leetbook/read/top-interview-questions-medium/xv8ka1/
      */
 
-    List<String> res;
+    List<String> res= new ArrayList<>();;
     Map<Character, String> map = new HashMap<>();
     int cnt = 0;
 
     public List<String> letterCombinations(String digits) {
-        res = new ArrayList<>();
+        if(digits.length()==0){
+            return new ArrayList<>();
+        }
         map.put('2', "abc");
         map.put('3', "def");
         map.put('4', "ghi");
@@ -26,7 +28,8 @@ public class LetterGroup {
         map.put('8', "tuv");
         map.put('9', "wxyz");
         cnt = digits.length();
-        group(new ArrayList<>(), digits);
+//        group(new ArrayList<>(), digits);
+        help(new StringBuilder(),digits);
         return res;
     }
 
@@ -61,9 +64,24 @@ public class LetterGroup {
         }
     }
 
+    public void help(StringBuilder path, String choice) {
+        if (cnt == path.length()) {
+            String p = path.toString();
+            res.add(p);
+            return;
+        }
+        String cs = map.get(choice.charAt(0));
+        for (char c : cs.toCharArray()) {
+            path.append(c);
+            help(path, choice.substring(1));
+            int cur = path.length();
+            path.deleteCharAt(cur - 1);
+        }
+    }
+
     public static void main(String[] args) {
         LetterGroup lg = new LetterGroup();
-        List<String> res = lg.letterCombinations("22");
+        List<String> res = lg.letterCombinations("");
         System.out.println(res);
     }
 }
