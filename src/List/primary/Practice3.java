@@ -17,19 +17,21 @@ public class Practice3 {
     }
 
     public static ListNode reverseList(ListNode head) {
-        ListNode node = head;
-        ListNode result = null;
-        ListNode ln;
-        while (node != null) {
-            ln = new ListNode(node.val);
-
-            ln.next = result;
-            result = ln;
-
-            node = node.next;
+        if (head == null || head.next == null) {
+            return head;
         }
+        ListNode pre = null;
+        ListNode next;
+        while (head.next != null) {
+            next = head.next;
 
-        return result;
+            head.next = pre;
+            pre = head;
+
+            head = next;
+        }
+        head.next = pre;
+        return head;
     }
 
     public ListNode reverseList01(ListNode head) {
