@@ -1,5 +1,7 @@
 package List.primary;
 
+import List.ListNode;
+
 import java.io.IOException;
 
 public class Practice2 {
@@ -21,7 +23,7 @@ public class Practice2 {
 //        head.next.next.next = new ListNode(4);
 
         Practice2 p = new Practice2();
-        printNode(p.test(head, 2));
+        System.out.println((p.test(head, 2)));
 
     }
 
@@ -35,7 +37,7 @@ public class Practice2 {
         }
 
         if (length == n) {
-            head=head.next;
+            head = head.next;
             return head;
         }
 
@@ -90,23 +92,5 @@ public class Practice2 {
         }
         second.next = second.next.next;
         return dummy.next;
-    }
-
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
-    private static void printNode(ListNode node) {
-        while (node.next != null) {
-            System.out.print(node.val + "->");
-            node = node.next;
-        }
-        System.out.print(node.val);
     }
 }

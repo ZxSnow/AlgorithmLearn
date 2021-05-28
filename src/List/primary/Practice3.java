@@ -1,5 +1,7 @@
 package List.primary;
 
+import List.ListNode;
+
 public class Practice3 {
     /**
      * 题目地址：
@@ -11,7 +13,7 @@ public class Practice3 {
 //        head.next.next = new ListNode(3);
 //        head.next.next.next = new ListNode(4);
 
-        printNode(reverseList(head));
+        System.out.println(reverseList(head));
     }
 
     public static ListNode reverseList(ListNode head) {
@@ -32,7 +34,7 @@ public class Practice3 {
 
     public ListNode reverseList01(ListNode head) {
         //递归终止条件是当前为空，或者下一个节点为空
-        if(head==null || head.next==null) {
+        if (head == null || head.next == null) {
             return head;
         }
         //这里的cur就是最后一个节点
@@ -46,22 +48,5 @@ public class Practice3 {
         head.next = null;
         //每层递归函数都返回cur，也就是最后一个节点
         return cur;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
-    private static void printNode(ListNode node) {
-        while (node.next != null) {
-            System.out.print(node.val + "->");
-            node = node.next;
-        }
-        System.out.print(node.val);
     }
 }

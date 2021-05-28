@@ -1,5 +1,7 @@
 package List.primary;
 
+import List.ListNode;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,8 +15,8 @@ public class Practice6 {
 
     public boolean hasCycle(ListNode head) {
         Set<ListNode> set = new HashSet<>();
-        while (head!=null){
-            if(set.contains(head)){
+        while (head != null) {
+            if (set.contains(head)) {
                 return true;
             }
             set.add(head);
@@ -24,6 +26,7 @@ public class Practice6 {
 
         return false;
     }
+
     //快慢指针
     public boolean hasCycle01(ListNode head) {
         if (head == null || head.next == null) {
@@ -39,15 +42,6 @@ public class Practice6 {
             fast = fast.next.next;
         }
         return true;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 
     public static ListNode merge(int[] arr) {

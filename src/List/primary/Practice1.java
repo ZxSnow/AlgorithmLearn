@@ -1,5 +1,7 @@
 package List.primary;
 
+import List.ListNode;
+
 public class Practice1 {
     /**
      * 题目：删除链表中的节点
@@ -21,28 +23,11 @@ public class Practice1 {
 
         deleteNode(head.next);
 
-        printNode(head);
+        System.out.println(head);
     }
 
     public static void deleteNode(ListNode node) {
         node.val = node.next.val;
         node.next = node.next.next;
-    }
-
-    private static void printNode(ListNode node) {
-        while (node.next != null) {
-            System.out.print(node.val + "->");
-            node = node.next;
-        }
-        System.out.print(node.val);
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 }

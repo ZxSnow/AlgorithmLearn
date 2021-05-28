@@ -1,5 +1,7 @@
 package List.primary;
 
+import List.ListNode;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Practice4 {
         ListNode node1 = merge(arr);
         int[] arr2 = {2, 4};
         ListNode node2 = merge(arr2);
-        printNode(mergeTwoLists0(node1, node2));
+        System.out.println(mergeTwoLists0(node1, node2));
 
     }
 
@@ -88,20 +90,4 @@ public class Practice4 {
         }
     }
 
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
-    private static void printNode(ListNode node) {
-        while (node.next != null) {
-            System.out.print(node.val + "->");
-            node = node.next;
-        }
-        System.out.print(node.val);
-    }
 }

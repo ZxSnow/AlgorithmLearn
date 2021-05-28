@@ -1,8 +1,11 @@
 package List.primary;
 
+import List.ListNode;
+
 public class Practice5 {
     /**
      * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/6/linked-list/45/
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -41,15 +44,6 @@ public class Practice5 {
             head = head.next;
         }
         return result;
-    }
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 
     public static ListNode merge(int[] arr) {
