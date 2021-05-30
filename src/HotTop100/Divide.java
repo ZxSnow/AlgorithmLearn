@@ -32,10 +32,7 @@ public class Divide {
         while (dividend >= divisor) {
             int mul = 1;
             int tmp = divisor;
-            while (tmp > 0 && (tmp << 1) <= dividend) {
-                if (tmp >= (1 << 30)) {
-                    break;
-                }
+            while (tmp < (1 << 30) && (tmp << 1) <= dividend) {
                 mul <<= 1;
                 tmp <<= 1;
             }
@@ -74,10 +71,7 @@ public class Divide {
         while (dividend <= divisor) {
             int mul = 1;
             int tmp = divisor;
-            while (tmp < 0 && (tmp << 1) >= dividend) {
-                if (tmp <= (-1 << 30)) {
-                    break;
-                }
+            while (tmp > (-1 << 30) && (tmp << 1) >= dividend) {
                 tmp <<= 1;
                 mul <<= 1;
             }
