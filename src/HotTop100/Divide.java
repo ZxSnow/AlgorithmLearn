@@ -66,12 +66,10 @@ public class Divide {
             same = false;
             dividend = -dividend;
         }
-
         if ((divisor & sign) == 0) {
             same = !same;
             divisor = -divisor;
         }
-
         int cnt = 0;
         while (dividend <= divisor) {
             int mul = 1;
@@ -90,10 +88,10 @@ public class Divide {
                 return same ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }
         }
-        //todo 符号待解决
-        sign = ~sign;
-
-        return same ? cnt & sign : cnt;
+        if (same && cnt == Integer.MIN_VALUE) {
+            return Integer.MAX_VALUE;
+        }
+        return same ? -cnt : cnt;
     }
 
 
