@@ -122,12 +122,68 @@ public class FindSubstring {
         return res;
     }
 
+    /**
+     * 滑动窗口
+     *
+     * @param s
+     * @param words
+     * @return
+     */
+    public List<Integer> findSubstring2(String s, String[] words) {
+        //将所有的单词放到map中
+        Map<String, Integer> needed = new HashMap<>();
+        for (String word : words) {
+            needed.put(word, needed.getOrDefault(word, 0) + 1);
+        }
+        int total = words.length;
+        int single = words[0].length();
+        List<Integer> res = new ArrayList<>();
+        int idx = 0;
+
+        while (idx <= s.length() - single * total) {
+            int left = idx, right;
+            right = idx;
+            Map<String, Integer> window = new HashMap<>();
+            int cnt = 0;
+
+            while (right < idx + single * total) {
+                String sub = s.substring(right, right + single);
+                right += single;
+                //窗口更新
+                if (needed.containsKey(sub)) {
+                    window.put(sub, window.getOrDefault(sub, 0) + 1);
+                    if (window.get(sub).equals(needed.get(sub))) {
+                        cnt++;
+                    }
+                }
+                while (cnt == needed.size()) {
+                    if (right - left == single * total) {
+                        res.add(left);
+                    }
+                    String tmp = s.substring(left, left + single);
+                    left += single;
+
+                    if (needed.containsKey(tmp)) {
+                        if (window.get(tmp).equals(needed.get(tmp))) {
+                            cnt--;
+                        }
+                        window.put(tmp, window.get(tmp) - 1);
+                    }
+                }
+            }
+            idx++;
+        }
+
+        return res;
+
+    }
+
 
     public static void main(String[] args) {
         FindSubstring fs = new FindSubstring();
-        String s = "foobarfoobar";
-        String[] words = {"foo","bar"};
-        List<Integer> res = fs.findSubstring(s, words);
+        String s = "barfoothefoobarman";
+        String[] words = {"foo", "bar"};
+        List<Integer> res = fs.findSubstring2(s, words);
         System.out.println(res);
     }
 }
