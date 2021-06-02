@@ -16,6 +16,16 @@ public class ListNode {
         this.next = next;
     }
 
+    public static ListNode arrayToListNode(int[] nums) {
+        ListNode node = new ListNode(nums[0]);
+        ListNode tmp = node;
+        for (int i = 1; i < nums.length; i++) {
+            tmp.next = new ListNode(nums[i]);
+            tmp = tmp.next;
+        }
+        return node;
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder(val + "->");
