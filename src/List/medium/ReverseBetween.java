@@ -17,12 +17,12 @@ public class ReverseBetween {
             cnt++;
         }
         ListNode after = pre;
-        while (after != null && cnt < right) {
+        while (after != null && cnt <= right) {
             after = after.next;
             cnt++;
         }
-        ListNode tmp = after.next.next;
-        after.next.next = null;
+        ListNode tmp = after.next;
+        after.next = null;
         pre.next = reverse2(pre.next, tmp);
         return res.next;
     }
