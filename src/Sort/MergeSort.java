@@ -28,7 +28,7 @@ public class MergeSort {
         while (right <= high) {
             temp[i++] = nums[right++];
         }
-        if (temp.length >= 0) System.arraycopy(temp, 0, nums, low, temp.length);
+        System.arraycopy(temp, 0, nums, low, temp.length);
     }
 
     public static void main(String[] args) {

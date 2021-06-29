@@ -56,11 +56,47 @@ public class HeapSort {
         return 2 * i + 1;
     }
 
+
+    public void build(int[] nums) {
+        int last = nums.length - 1;
+        int father = (last - 1) / 2;
+        while (father >= 0) {
+            treeify(nums, father--, last + 1);
+        }
+    }
+
+    public void treeify(int[] nums, int i, int size) {
+        if (i >= size) {
+            return;
+        }
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        int max = i;
+        if (left < size && nums[left] > nums[max])
+            max = left;
+        if (right < size && nums[right] > nums[max])
+            max = right;
+        if (max != i) {
+            swap(nums, i, max);
+            treeify(nums, max, size);
+        }
+    }
+
+    public void heapSort2(int[] nums) {
+        build(nums);
+
+        for (int i = nums.length - 1; i >= 0; i--) {
+            swap(nums, 0, i);
+            treeify(nums, 0, i);
+        }
+    }
+
     public static void main(String[] args) {
         int[] arr = {50, 10, 90, 30, 70, 40, 80, 60, 20};
         HeapSort hs = new HeapSort();
         // 堆排序
-        hs.heapSort(arr);
+        hs.heapSort2(arr);
         System.out.println(Arrays.toString(arr));
 
     }
