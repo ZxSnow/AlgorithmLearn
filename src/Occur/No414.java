@@ -26,6 +26,26 @@ public class No414 {
         return list.size() == 3 ? list.get(0) : list.get(list.size() - 1);
     }
 
+    public int thirdMax2(int[] nums) {
+        Integer max = null, secondMax = null, thirdMax = null;
+        for (int num : nums) {
+            if (num == max || num == secondMax || num == thirdMax)
+                continue;
+            else if (max == null || num > max) {
+                thirdMax = secondMax;
+                secondMax = max;
+                max = num;
+            } else if (secondMax == null || num > secondMax) {
+                thirdMax = secondMax;
+                secondMax = num;
+            } else if (thirdMax == null || num > thirdMax) {
+                thirdMax = num;
+            }
+        }
+        return thirdMax == null ? max : thirdMax;
+    }
+
+
     public static void main(String[] args) {
         No414 no = new No414();
         int[] nums = {1, 2, 2, 5, 3, 5};
