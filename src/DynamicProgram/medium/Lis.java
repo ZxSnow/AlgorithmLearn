@@ -12,24 +12,25 @@ public class Lis {
         int len = nums.length;
         int[] dp = new int[len];
         Arrays.fill(dp, 1);
+        int max = 0;
+
 
         for (int i = 1; i < len; i++) {
             for (int j = i; j >= 0; j--) {
                 if (nums[j] < nums[i]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
+                max = Math.max(max, dp[i]);
             }
         }
 
-        int max = 0;
-        for (int cnt : dp) {
-            max = Math.max(max, cnt);
-        }
+//        for (int cnt : dp) {
+//        }
         return max;
     }
 
     public static void main(String[] args) {
-        int[] nums = {7,7,7,7,7,7,7};
+        int[] nums = {6,7,7,7,7,7,7};
         Lis lis = new Lis();
         System.out.println(lis.lengthOfLIS(nums));
     }
