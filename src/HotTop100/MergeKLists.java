@@ -26,9 +26,11 @@ public class MergeKLists {
             return l1;
         }
         if (l1.val < l2.val) {
-            return mergeTwoLists1(l1.next, l2);
+            l1.next = mergeTwoLists1(l1.next, l2);
+            return l1;
         } else {
-            return mergeTwoLists1(l2, l2.next);
+            l2.next = mergeTwoLists1(l1, l2.next);
+            return l2;
         }
     }
 

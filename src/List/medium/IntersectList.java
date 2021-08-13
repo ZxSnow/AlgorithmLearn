@@ -16,8 +16,8 @@ public class IntersectList {
             max = max.next;
             gap--;
         }
-        while (max!=null&&min!=null){
-            if(max.equals(min)){
+        while (max != null && min != null) {
+            if (max.equals(min)) {
                 return max;
             }
             max = max.next;
@@ -35,6 +35,17 @@ public class IntersectList {
         return res;
     }
 
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        ListNode a = headA, b = headB;
+        while (a != null && b != null) {
+            if (a == b)
+                return a;
+            a = a.next;
+            b = b.next;
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         IntersectList il = new IntersectList();
         ListNode head = new ListNode(1);
@@ -45,6 +56,7 @@ public class IntersectList {
         ListNode head2 = new ListNode(1);
         head2.next = new ListNode(2);
         head2.next.next = new ListNode(3);
-        il.getIntersectionNode(head,head2);
+        ListNode res = il.getIntersectionNode2(head, head2);
+        System.out.println(res);
     }
 }
