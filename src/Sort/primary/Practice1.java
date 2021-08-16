@@ -13,8 +13,8 @@ public class Practice1 {
         int[] nums1 = {0, 0, 3, 0, 0, 0, 0, 0, 0};
         int[] nums2 = {-1, 1, 1, 1, 2, 3};
         Practice1 p = new Practice1();
-        p.merge(nums1, 3, nums2, 6);
-        System.out.println(nums1);
+        p.merge2(nums1, 3, nums2, 6);
+        System.out.println(Arrays.toString(nums1));
     }
 
     public void merge1(int[] nums1, int m, int[] nums2, int n) {
@@ -42,5 +42,24 @@ public class Practice1 {
 
         }
         System.arraycopy(nums2, 0, nums1, 0, len2 + 1);
+    }
+
+    public void merge2(int[] nums1, int m, int[] nums2, int n) {
+        int all = m + n - 1;
+        int i = m - 1, j = n - 1;
+
+        while(i >= 0 && j >= 0){
+            if(nums1[i] > nums2[j]){
+                nums1[all] = nums1[i];
+                i--;
+            }else{
+                nums1[all] = nums2[j];
+                j--;
+            }
+            all--;
+        }
+        while(j >= 0){
+            nums1[all--] = nums2[j--];
+        }
     }
 }
