@@ -18,6 +18,34 @@ public class MergeKLists {
         return res;
     }
 
+    /**
+     * 时间复杂度分析：
+     * 优先队列queue中的元素个数最多是k(lists.length)，所以一次poll或者add方法的时间复杂度是O(log k)；
+     * 所有的链表节点都会被加入和弹出queue，所以算法整体的时间复杂度是O(N*log k)，其中k是链表的条数，N是这些链表的节点总数。
+     *
+     * @param lists
+     * @return
+     */
+    public ListNode mergeKLists1(ListNode[] lists) {
+        if (lists.length == 0) return null;
+        ListNode dummy = new ListNode(-1);
+        ListNode node = dummy;
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, Comparator.comparingInt(a -> a.val));
+        for (ListNode head : lists) {
+            if (head != null)
+                queue.add(head);
+        }
+        while (!queue.isEmpty()) {
+            ListNode cur = queue.poll();
+            node.next = cur;
+            if (cur.next != null) {
+                queue.add(cur.next);
+            }
+            node = node.next;
+        }
+        return dummy.next;
+    }
+
     public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;

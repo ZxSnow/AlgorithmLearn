@@ -35,15 +35,30 @@ public class IntersectList {
         return res;
     }
 
+    /**
+     * No. 160 相交链表
+     * 解法：双指针，逻辑拼接
+     *
+     * @param headA
+     * @param headB
+     * @return
+     */
     public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
         ListNode a = headA, b = headB;
-        while (a != null && b != null) {
-            if (a == b)
-                return a;
-            a = a.next;
-            b = b.next;
+        while (a != b) {
+            if (a == null) {
+                a = headB;
+            } else {
+                a = a.next;
+            }
+
+            if (b == null) {
+                b = headA;
+            } else {
+                b = b.next;
+            }
         }
-        return null;
+        return a;
     }
 
     public static void main(String[] args) {
