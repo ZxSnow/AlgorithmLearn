@@ -1,7 +1,5 @@
 package Trick;
 
-import java.util.Vector;
-
 public class TopK {
     /**
      * tag: 大顶堆维构建
@@ -77,7 +75,7 @@ public class TopK {
     }
 
     public static void main(String[] args) {
-        int[] nums = {1,2,3,4,5};
+        int[] nums = {1, 2, 3, 4, 5};
 
         TopK t = new TopK();
         t.buildHeap(nums);

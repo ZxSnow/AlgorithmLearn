@@ -40,7 +40,6 @@ public class Practice11 {
             count = length / 2;
         }
         for (int i = 0; i < count; i++) {
-            List<Integer> list = new ArrayList<>();
             //length - 2i :旋转层的阶数
             int step = length - 2 * i;
             for (int j = 0; j < step - 1; j++) {
