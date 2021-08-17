@@ -46,14 +46,52 @@ public class ReverseBetween {
         return head;
     }
 
+    public ListNode reverseBetween1(ListNode head, int left, int right) {
+        if (head == null || left == right) return head;
+
+        int cnt = 1;
+        ListNode pre = new ListNode();
+        pre.next = head;
+        ListNode res = pre;
+        while (cnt < left) {
+            pre = pre.next;
+            cnt++;
+        }
+        ListNode after = pre;
+        while (cnt <= right) {
+            after = after.next;
+            cnt++;
+        }
+        ListNode tmp = after.next;
+        after.next = null;
+        pre.next = reverse(pre.next, tmp);
+        return res.next;
+    }
+
+    public ListNode reverse(ListNode head, ListNode after) {
+        if (head == null) return head;
+
+        ListNode pre = after;
+        ListNode next;
+
+        while (head.next != null) {
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        head.next = pre;
+        return head;
+    }
+
     public static void main(String[] args) {
         ReverseBetween rb = new ReverseBetween();
 
-        int[] nums = {1, 2, 3, 4, 5};
+        int[] nums = {1, 2,3,4,5};
         ListNode node = ListNode.arrayToListNode(nums);
         System.out.println(node);
 
-        ListNode res = rb.reverseBetween(node, 1, 1);
+        ListNode res = rb.reverseBetween1(node, 2, 4);
         System.out.println(res);
     }
 }
