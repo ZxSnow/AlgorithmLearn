@@ -3,9 +3,6 @@ package Occur;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * unfinished
- */
 public class No54 {
     List<Integer> res;
 
@@ -29,6 +26,9 @@ public class No54 {
         for (int i = level + 1; i < row; i++) {
             res.add(matrix[i][col - 1]);
         }
+        if (res.size() == matrix[0].length * matrix.length)
+            return;
+
         for (int i = col - 2; i >= level; i--) {
             res.add(matrix[row - 1][i]);
         }
