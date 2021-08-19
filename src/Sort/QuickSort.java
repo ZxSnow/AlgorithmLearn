@@ -1,6 +1,8 @@
 package Sort;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Random;
 
 public class QuickSort {
     public static void sort(int[] a, int low, int hight) {
@@ -87,9 +89,76 @@ public class QuickSort {
         nums[j] = temp;
     }
 
+    /**
+     * 常用版本
+     *
+     * @param nums
+     */
+    public void quickSortA(int[] nums) {
+        sortA(nums, 0, nums.length - 1);
+    }
+
+    public void sortA(int[] nums, int left, int right) {
+        if (left >= right)
+            return;
+        int p = random(nums, left, right);
+
+        sortA(nums, left, p - 1);
+        sortA(nums, p + 1, right);
+    }
+
+    Random rdm = new Random();
+
+    public int random(int[] nums, int l, int r) {
+        int i = rdm.nextInt(r - l + 1) + l;
+        swap(nums, l, i);
+        return partitionA(nums, l, r);
+    }
+
+    public int partitionA(int[] nums, int left, int right) {
+        int pivot = nums[left];
+        int cnt = left;
+        for (int i = left + 1; i <= right; i++) {
+            if (nums[i] < pivot) {
+                swap(nums, ++cnt, i);
+            }
+        }
+        swap(nums, left, cnt);
+        return cnt;
+    }
+
+    /**
+     * 非递归版本
+     *
+     * @param nums
+     * @return
+     */
+    public int[] quickSortUnRecur(int[] nums) {
+        LinkedList<Integer> stack = new LinkedList<>();
+        stack.push(nums.length - 1);
+        stack.push(0);
+        while (!stack.isEmpty()) {
+            int left = stack.pop();
+            int right = stack.pop();
+
+            if (left < right) {
+                int pivotIdx = partition(nums, left, right);
+                stack.push(pivotIdx - 1);
+                stack.push(left);
+                stack.push(right);
+                stack.push(pivotIdx + 1);
+            }
+
+        }
+        return nums;
+    }
+
     public static void main(String[] args) {
         int[] a = {49, 38, 65, 97, 76, 13, 27};
-        quickSort(a);
+//        quickSort(a);
+//        System.out.println(Arrays.toString(a));
+        QuickSort quick = new QuickSort();
+        quick.quickSortUnRecur(a);
         System.out.println(Arrays.toString(a));
     }
 }
