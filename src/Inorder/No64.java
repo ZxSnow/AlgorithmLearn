@@ -1,4 +1,4 @@
-package Occur;
+package Inorder;
 
 import java.util.Arrays;
 

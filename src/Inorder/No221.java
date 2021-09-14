@@ -1,4 +1,4 @@
-package Occur;
+package Inorder;
 
 public class No221 {
     /**

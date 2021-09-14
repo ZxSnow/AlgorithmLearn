@@ -1,6 +1,4 @@
-package Occur;
-
-import DynamicProgram.medium.Lis;
+package Inorder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
