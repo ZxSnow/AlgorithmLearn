@@ -1,20 +1,27 @@
 package Inorder;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 public class No829 {
+    /**
+     * 依次遍历：超时
+     *
+     * @param n
+     * @return
+     */
     public static int consecutiveNumbersSum(int n) {
-        String[] preSum = new String[n + 1];
-        Map<String, Integer> map = new HashMap<>();
-        map.put("0", 0);
+        long[] preSum = new long[n + 1];
+        Map<Long, Integer> map = new HashMap<>();
+        map.put(0L, 0);
         int cnt = 0;
         for (int i = 1; i <= n; i++) {
-            preSum[i] = add(preSum[i - 1], i);
+            preSum[i] = preSum[i - 1] + i;
             map.put(preSum[i], i);
 
-            if (compare(preSum[i], n)) {
-                if (map.containsKey(add(preSum[i], -n))) {
+            if (preSum[i] >= n) {
+                if (map.containsKey(preSum[i] - n)) {
                     cnt++;
                 }
             }
@@ -22,32 +29,24 @@ public class No829 {
         return cnt;
     }
 
-    public static String add(String num1, int num2) {
-        String num = "";
-        boolean flag = true;
-        if (num2 > 0) {
-            num = String.valueOf(num2);
-        } else {
-            num = String.valueOf(-num2);
-            flag = false;
-        }
-        StringBuilder sb = new StringBuilder();
-        int i = 0, j = 0;
-        while (i <= num1.length() && j <= num.length()){
-
-
+    /**
+     * 利用等差数列特性
+     *
+     * @param n
+     * @return
+     */
+    public static int consecutiveNumbersSum1(int n) {
+        int sum = 0, res = 0, i = 1;
+        while (sum < n) {
+            if ((n - sum) % i == 0) res++;
+            sum += i;
             i++;
-            j++;
         }
-        return sb.toString();
-    }
-
-    public static boolean compare(String num1, int num2) {
-        return false;
+        return res;
     }
 
     public static void main(String[] args) {
-        int res = consecutiveNumbersSum(9);
+        int res = consecutiveNumbersSum1(501734);
         System.out.println(res);
     }
 }
